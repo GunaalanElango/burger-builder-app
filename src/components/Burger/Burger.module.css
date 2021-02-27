@@ -27,3 +27,12 @@
     height: 250px;
   }
 }
+
+.Burger p {
+  font-size: 1.5rem;
+  background: #aaa;
+  display: inline;
+  padding: 5px 20px;
+  font-weight: bolder;
+  color: white;
+}
