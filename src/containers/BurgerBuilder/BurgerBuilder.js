@@ -53,8 +53,16 @@ class BurgerBuilder extends Component {
   };
 
   orderBurgerHandler = () => {
-    this.setState({ showModal: true })
-  }
+    this.setState({ showModal: true });
+  };
+
+  backdropHandler = () => {
+    this.setState({ showModal: false });
+  };
+
+  continueCheckoutHandler = () => {
+    alert("Do you confirm");
+  };
 
   render() {
     const disableInfo = {
@@ -71,9 +79,13 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Backdrop show={this.state.showModal} />
+        <Backdrop show={this.state.showModal} click={this.backdropHandler} />
         <Modal showModal={this.state.showModal}>
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            cancel={this.backdropHandler}
+            continue={this.continueCheckoutHandler}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

@@ -26,7 +26,7 @@ const buildControls = (props) => {
   return (
     <div className={classes.BuildControls}>
       <p>
-        Burger Price: <strong>{props.price}</strong>
+        Burger Price: <strong>{props.price}</strong> Rupess
       </p>
       {buildControl}
       <button
