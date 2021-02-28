@@ -25,8 +25,17 @@ const buildControls = (props) => {
 
   return (
     <div className={classes.BuildControls}>
+      <p>
+        Burger Price: <strong>{props.price}</strong>
+      </p>
       {buildControl}
-      <button className={classes.OrderButton} disabled={props.orderDisable}>ORDER NOW</button>
+      <button
+        className={classes.OrderButton}
+        onClick={props.orderBtnClick}
+        disabled={props.orderDisable}
+      >
+        ORDER NOW
+      </button>
     </div>
   );
 };
