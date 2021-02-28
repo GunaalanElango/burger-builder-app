@@ -18,6 +18,7 @@ const buildControls = (props) => {
         type={control.type}
         addIngredient={props.addIngredient}
         removeIngredient={props.removeIngredient}
+        lessBtnDisable={props.disableInfo[control.type]}
       />
     );
   });
