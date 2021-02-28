@@ -53,9 +53,13 @@ class BurgerBuilder extends Component {
       ...this.state.ingredients,
     };
 
+    let orderBtnDisable = [];
     for (let key in disableInfo) {
       disableInfo[key] = disableInfo[key] === 0 ? true : false;
+      orderBtnDisable.push(disableInfo[key]);
     }
+
+    const orderDisable = !orderBtnDisable.includes(false, 0);
 
     return (
       <Aux>
@@ -64,6 +68,7 @@ class BurgerBuilder extends Component {
           addIngredient={this.addIngredientHandler}
           removeIngredient={this.removeIngredientHandler}
           disableInfo={disableInfo}
+          orderDisable={orderDisable}
         />
       </Aux>
     );

@@ -23,7 +23,12 @@ const buildControls = (props) => {
     );
   });
 
-  return <div className={classes.BuildControls}>{buildControl}</div>;
+  return (
+    <div className={classes.BuildControls}>
+      {buildControl}
+      <button className={classes.OrderButton} disabled={props.orderDisable}>ORDER NOW</button>
+    </div>
+  );
 };
 
 export default buildControls;
