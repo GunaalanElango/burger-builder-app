@@ -1,13 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import classes from "./Modal.module.css";
 
-const modal = (props) => {
-    let modalClass = [classes.Modal];
-    if (props.showModal) {
-        modalClass.push(classes.Display)
-    }
+class Modal extends Component {
+  componentWillUpdate() {
+    console.log("updates modal");
+  }
 
-    return <div className={modalClass.join(" ")}>{props.children}</div>
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.showModal !== this.props.showModal;
+  }
+
+  render() {
+    let modalClass = [classes.Modal];
+    if (this.props.showModal) {
+      modalClass.push(classes.Display);
+    }
+    return <div className={modalClass.join(" ")}>{this.props.children}</div>;
+  }
 }
 
-export default modal;
+export default Modal;
