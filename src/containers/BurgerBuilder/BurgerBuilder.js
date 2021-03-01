@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Aux from "../../hoc/Auxiliary";
+import Aux from "../../hoc/Auxiliary/Auxiliary";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
@@ -11,6 +11,13 @@ let INGREDIENT_PRICES = {
   meat: 20,
   cheese: 5,
   bacon: 5,
+};
+
+let MAX_INGREDIENT = {
+  cheese: 2,
+  salad: 2,
+  meat: 2,
+  bacon: 3,
 };
 
 class BurgerBuilder extends Component {
@@ -27,6 +34,10 @@ class BurgerBuilder extends Component {
 
   addIngredientHandler = (type) => {
     const oldCount = this.state.ingredients[type];
+    const maxCount = MAX_INGREDIENT[type];
+    if (maxCount < oldCount + 1) {
+      return;
+    }
     const updatedIngredient = {
       ...this.state.ingredients,
     };
@@ -69,6 +80,15 @@ class BurgerBuilder extends Component {
       ...this.state.ingredients,
     };
 
+    const moreDisableInfo = {
+      ...this.state.ingredients,
+    };
+
+    for (let key in moreDisableInfo) {
+      moreDisableInfo[key] =
+        moreDisableInfo[key] === MAX_INGREDIENT[key] ? true : false;
+    }
+
     let orderBtnDisable = [];
     for (let key in disableInfo) {
       disableInfo[key] = disableInfo[key] === 0 ? true : false;
@@ -94,6 +114,7 @@ class BurgerBuilder extends Component {
           removeIngredient={this.removeIngredientHandler}
           disableInfo={disableInfo}
           orderDisable={orderDisable}
+          moreDisableInfo={moreDisableInfo}
           price={this.state.totalPrice}
           orderBtnClick={this.orderBurgerHandler}
         />

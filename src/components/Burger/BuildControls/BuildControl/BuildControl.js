@@ -8,6 +8,7 @@ const buildControl = (props) => {
       <button
         onClick={() => props.addIngredient(props.type)}
         className={classes.More}
+        disabled={props.moreDisableInfo}
       >
         More
       </button>
