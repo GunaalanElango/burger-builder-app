@@ -4,9 +4,9 @@ import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
-import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axios-orders";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 let INGREDIENT_PRICES = {
   salad: 10,
@@ -95,7 +95,7 @@ class BurgerBuilder extends Component {
     axios
       .post("/orders.json", order)
       .then((response) => this.setState({ loading: false, showModal: false }))
-      .catch((error) => this.setState({ loading: false, showModal: false }));
+      .catch((error) => this.setState({ loading: false }));
   };
 
   render() {
@@ -135,8 +135,9 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Backdrop show={this.state.showModal} click={this.backdropHandler} />
-        <Modal showModal={this.state.showModal}>{orderSummary}</Modal>
+        <Modal showModal={this.state.showModal} click={this.backdropHandler}>
+          {orderSummary}
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           addIngredient={this.addIngredientHandler}
@@ -152,4 +153,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);

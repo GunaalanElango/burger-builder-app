@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import classes from "./Modal.module.css";
+import Backdrop from "../Backdrop/Backdrop";
+import Aux from "../../../hoc/Auxiliary/Auxiliary";
 
 class Modal extends Component {
-  componentWillUpdate() {
-    console.log("updates modal");
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.showModal !== this.props.showModal ||
@@ -18,7 +16,13 @@ class Modal extends Component {
     if (this.props.showModal) {
       modalClass.push(classes.Display);
     }
-    return <div className={modalClass.join(" ")}>{this.props.children}</div>;
+
+    return (
+      <Aux>
+        <Backdrop show={this.props.showModal} click={this.props.click} />
+        <div className={modalClass.join(" ")}>{this.props.children}</div>
+      </Aux>
+    );
   }
 }
 
