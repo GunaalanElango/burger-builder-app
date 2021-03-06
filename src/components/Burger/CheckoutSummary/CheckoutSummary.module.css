@@ -1,0 +1,11 @@
+.CheckoutSummary {
+  height: 500px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.CheckoutSummary h1 {
+  font-weight: bolder;
+  font-family: inherit;
+}
