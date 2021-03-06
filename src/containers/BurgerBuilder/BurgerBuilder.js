@@ -32,7 +32,7 @@ class BurgerBuilder extends Component {
     },
     totalPrice: 50,
     showModal: false,
-    loading: false,
+    // loading: false,
   };
 
   addIngredientHandler = (type) => {
@@ -75,27 +75,28 @@ class BurgerBuilder extends Component {
   };
 
   continueCheckoutHandler = () => {
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      totalPrice: this.state.totalPrice,
-      customer: {
-        name: "Gunaalan",
-        mobileNumber: "+919597021544",
-        email: "elangogunaalan@gmail.com",
-        address: {
-          city: "komarapalayam",
-          pincode: "638183",
-          district: "namakkal",
-          state: "Tamil Nadu",
-        },
-        deliveryMethod: "fastest",
-      },
-    };
-    axios
-      .post("/orders.json", order)
-      .then((response) => this.setState({ loading: false, showModal: false }))
-      .catch((error) => this.setState({ loading: false }));
+    this.props.history.push("/checkout");
+    // this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   totalPrice: this.state.totalPrice,
+    //   customer: {
+    //     name: "Gunaalan",
+    //     mobileNumber: "+919597021544",
+    //     email: "elangogunaalan@gmail.com",
+    //     address: {
+    //       city: "komarapalayam",
+    //       pincode: "638183",
+    //       district: "namakkal",
+    //       state: "Tamil Nadu",
+    //     },
+    //     deliveryMethod: "fastest",
+    //   },
+    // };
+    // axios
+    //   .post("/orders.json", order)
+    //   .then((response) => this.setState({ loading: false, showModal: false }))
+    //   .catch((error) => this.setState({ loading: false }));
   };
 
   render() {
