@@ -3,18 +3,11 @@ import Burger from "../Burger";
 import Button from "../../UI/Button/Button";
 import classes from "./CheckoutSummary.module.css";
 
-const ingredients = {
-  salad: 1,
-  cheese: 1,
-  bacon: 1,
-  meat: 2,
-};
-
 const checkoutSummary = (props) => {
   return (
     <div className={classes.CheckoutSummary}>
       <h1>We Hope it tastes well!!</h1>
-      <Burger ingredients={ingredients} />
+      <Burger ingredients={props.ingredients} />
       <Button type="Danger" click={props.dangerClicked}>
         CANCEL
       </Button>
