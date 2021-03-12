@@ -88,27 +88,6 @@ class BurgerBuilder extends Component {
       pathname: "/checkout",
       search: "?" + queryString,
     });
-    // this.setState({ loading: true });
-    // const order = {
-    //   ingredients: this.state.ingredients,
-    //   totalPrice: this.state.totalPrice,
-    //   customer: {
-    //     name: "Gunaalan",
-    //     mobileNumber: "+919597021544",
-    //     email: "elangogunaalan@gmail.com",
-    //     address: {
-    //       city: "komarapalayam",
-    //       pincode: "638183",
-    //       district: "namakkal",
-    //       state: "Tamil Nadu",
-    //     },
-    //     deliveryMethod: "fastest",
-    //   },
-    // };
-    // axios
-    //   .post("/orders.json", order)
-    //   .then((response) => this.setState({ loading: false, showModal: false }))
-    //   .catch((error) => this.setState({ loading: false }));
   };
 
   render() {
