@@ -7,11 +7,6 @@ const navigationItem = (props) => (
     <NavLink
       to={props.link}
       activeClassName={classes.active}
-      // activeStyle={{
-      //   borderBottom: "4px solid #40a4c8",
-      //   background: "#8f5c2c",
-      //   color: " white",
-      // }}
       exact
     >
       {props.children}
