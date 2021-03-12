@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import classes from "./ContactData.module.css";
 import Button from "../../../components/UI/Button/Button";
+import Spinner from "../../../components/UI/Spinner/Spinner";
 import axios from "../../../axios-orders";
 
 class ContactData extends Component {
+  state = {
+    loading: false,
+  };
+
   orderHandler = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
-      totalPrice: this.props.totalPrice,
+      totalPrice: this.props.price,
       customer: {
         name: "Gunaalan",
         mobileNumber: "+919597021544",
@@ -25,7 +30,9 @@ class ContactData extends Component {
     };
     axios
       .post("/orders.json", order)
-      .then((response) => this.setState({ loading: false, showModal: false }))
+      .then((response) => {
+        this.setState({ loading: false });
+      })
       .catch((error) => this.setState({ loading: false }));
   };
 
@@ -33,15 +40,19 @@ class ContactData extends Component {
     return (
       <div className={classes.ContactData}>
         <h3>Contact form</h3>
-        <form>
-          <input type="text" placeholder="Your Name" />
-          <input type="email" placeholder="Your Mail" />
-          <input type="text" placeholder="Street" />
-          <input type="text" placeholder="Zip code" />
-          <Button type="Success" click={this.orderHandler}>
-            ORDER
-          </Button>
-        </form>
+        {this.state.loading ? (
+          <Spinner />
+        ) : (
+          <form>
+            <input type="text" placeholder="Your Name" />
+            <input type="email" placeholder="Your Mail" />
+            <input type="text" placeholder="Street" />
+            <input type="text" placeholder="Zip code" />
+            <Button type="Success" click={this.orderHandler}>
+              ORDER
+            </Button>
+          </form>
+        )}
       </div>
     );
   }
