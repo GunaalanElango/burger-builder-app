@@ -9,7 +9,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.ContactData input {
-  margin: 10px 0;
-}
