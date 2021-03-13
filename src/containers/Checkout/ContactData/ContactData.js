@@ -7,6 +7,50 @@ import Input from "../../../components/UI/Input/Input";
 
 class ContactData extends Component {
   state = {
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name",
+        },
+        value: "",
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Mail",
+        },
+        value: "",
+      },
+      street: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Street",
+        },
+        value: "",
+      },
+      zipCode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your PostalCode",
+        },
+        value: "",
+      },
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" },
+          ],
+        },
+        value: "",
+      },
+    },
     loading: false,
   };
 
@@ -18,13 +62,10 @@ class ContactData extends Component {
       totalPrice: this.props.price,
       customer: {
         name: "Gunaalan",
-        mobileNumber: "+919597021544",
         email: "elangogunaalan@gmail.com",
         address: {
-          city: "komarapalayam",
           pincode: "638183",
-          district: "namakkal",
-          state: "Tamil Nadu",
+          street: "Tamil Nadu",
         },
         deliveryMethod: "fastest",
       },
