@@ -53,6 +53,7 @@ class ContactData extends Component {
           ],
           name: "deliveryMethod",
         },
+        value: "fastest",
       },
     },
     loading: false,
@@ -61,19 +62,20 @@ class ContactData extends Component {
   orderHandler = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
+    const formData = {};
+
+    for (let formKey in this.state.orderForm) {
+      formData[formKey] = this.state.orderForm[formKey].value;
+    }
+
+    console.log(formData);
+
     const order = {
       ingredients: this.props.ingredients,
       totalPrice: this.props.price,
-      customer: {
-        name: "Gunaalan",
-        email: "elangogunaalan@gmail.com",
-        address: {
-          pincode: "638183",
-          street: "Tamil Nadu",
-        },
-        deliveryMethod: "fastest",
-      },
+      orderData: formData,
     };
+
     axios
       .post("/orders.json", order)
       .then((response) => {
