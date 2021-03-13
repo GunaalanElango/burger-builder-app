@@ -13,6 +13,7 @@ class ContactData extends Component {
         elementConfig: {
           type: "text",
           placeholder: "Your Name",
+          name: "name",
         },
         value: "",
       },
@@ -21,6 +22,7 @@ class ContactData extends Component {
         elementConfig: {
           type: "text",
           placeholder: "Your Mail",
+          name: "email",
         },
         value: "",
       },
@@ -29,6 +31,7 @@ class ContactData extends Component {
         elementConfig: {
           type: "text",
           placeholder: "Your Street",
+          name: "street",
         },
         value: "",
       },
@@ -37,6 +40,7 @@ class ContactData extends Component {
         elementConfig: {
           type: "text",
           placeholder: "Your PostalCode",
+          name: "zipCode",
         },
         value: "",
       },
@@ -47,6 +51,7 @@ class ContactData extends Component {
             { value: "fastest", displayValue: "Fastest" },
             { value: "cheapest", displayValue: "Cheapest" },
           ],
+          name: "deliveryMethod",
         },
       },
     },
@@ -78,6 +83,18 @@ class ContactData extends Component {
       .catch((error) => this.setState({ loading: false }));
   };
 
+  inputChangeHandler = (event) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm,
+    };
+    const updatedInputElement = {
+      ...updatedOrderForm[event.target.name],
+    };
+    updatedInputElement.value = event.target.value;
+    updatedOrderForm[event.target.name] = updatedInputElement;
+    this.setState({ orderForm: updatedOrderForm });
+  };
+
   render() {
     let inputElements = [];
     for (let key in this.state.orderForm) {
@@ -87,6 +104,7 @@ class ContactData extends Component {
           elementConfig={this.state.orderForm[key].elementConfig}
           elementType={this.state.orderForm[key].elementType}
           value={this.state.orderForm[key].value}
+          changed={this.inputChangeHandler}
         />
       );
     }
