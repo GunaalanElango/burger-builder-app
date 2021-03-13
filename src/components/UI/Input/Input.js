@@ -3,12 +3,21 @@ import React from "react";
 
 const input = (props) => {
   let inputElement = null;
-  switch (props.inputtype) {
+  switch (props.elementType) {
     case "textarea":
       inputElement = <textarea />;
       break;
+    case "input":
+      inputElement = (
+        <input
+          {...props.elementConfig}
+          className={classes.Input}
+          value={props.value}
+        />
+      );
+      break;
     default:
-      inputElement = <input {...props} className={classes.Input} />;
+      inputElement = null;
       break;
   }
 

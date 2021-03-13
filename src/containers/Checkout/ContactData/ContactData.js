@@ -48,7 +48,6 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" },
           ],
         },
-        value: "",
       },
     },
     loading: false,
@@ -80,6 +79,18 @@ class ContactData extends Component {
   };
 
   render() {
+    let inputElements = [];
+    for (let key in this.state.orderForm) {
+      inputElements.push(
+        <Input
+          key={key}
+          elementConfig={this.state.orderForm[key].elementConfig}
+          elementType={this.state.orderForm[key].elementType}
+          value={this.state.orderForm[key].value}
+        />
+      );
+    }
+
     return (
       <div className={classes.ContactData}>
         <h3>Contact form</h3>
@@ -87,10 +98,7 @@ class ContactData extends Component {
           <Spinner />
         ) : (
           <form>
-            <Input lable="Your Name:" type="text" placeholder="Your Name" />
-            <Input lable="Your Mail:" type="email" placeholder="Your Mail" />
-            <Input lable="Street:" type="text" placeholder="Street" />
-            <Input lable="Zip code:" type="text" placeholder="Zip code" />
+            {inputElements}
             <Button type="Success" click={this.orderHandler}>
               ORDER
             </Button>
