@@ -2,3 +2,5 @@ export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
 export const ADD_PRICE = 'ADD_PRICE';
 export const REMOVE_PRICE = 'REMOVE_PRICE';
+export const INIT_ORDERS = 'INIT_ORDERS';
+export const SET_ORDERS = 'SET_ORDERS';

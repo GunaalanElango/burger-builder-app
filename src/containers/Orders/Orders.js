@@ -1,33 +1,16 @@
 import React, { Component } from "react";
 import Order from "../../components/Burger/Order/Order";
-import axios from "../../axios-orders";
+import { connect } from "react-redux";
+import { initOrders } from "../../store/actions/order";
 
 class Orders extends Component {
-  state = {
-    orders: [],
-    loading: false,
-  };
-
   componentDidMount() {
-    this.setState({ loading: true });
-    axios
-      .get("/orders.json")
-      .then((response) => {
-        const fetchedOrders = [];
-        for (let key in response.data) {
-          fetchedOrders.push({
-            id: key,
-            ...response.data[key],
-          });
-        }
-        this.setState({ orders: fetchedOrders, loading: false });
-      })
-      .catch((error) => this.setState({ loading: false }));
+    this.props.onInitOrders();
   }
 
   render() {
     let orders = [];
-    for (const order of this.state.orders) {
+    for (const order of this.props.orders) {
       orders.push(
         <Order
           key={order.id}
@@ -41,4 +24,16 @@ class Orders extends Component {
   }
 }
 
-export default Orders;
+const mapStateToProps = (state) => {
+  return {
+    orders: state.order.orders,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInitOrders: () => dispatch(initOrders()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);
